@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :set_user, only: [:show, :edit, :update, :destroy, :random]
 
   def index
     @users = User.all
@@ -26,6 +26,12 @@ class UsersController < ApplicationController
     else
       render :edit
     end
+  end
+
+  def random
+    @random_user = User.all.sample
+    @like = Like.new
+    render :random
   end
 
   private
